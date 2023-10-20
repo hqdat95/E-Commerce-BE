@@ -1,0 +1,50 @@
+{
+  "name": "SERN-E-Commerce-BE",
+  "version": "1.0.0",
+  "description": "JWT, Docker, Redis, MySQL, Sequelize, OAuth2, Express, Nodejs",
+  "main": "server.js",
+  "repository": "git@github.com:hqdat95/SERN-eCommerce-BE.git",
+  "author": "hqdat95",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "run:migrate": "npx sequelize-cli db:migrate",
+    "undo:migrate": "npx sequelize-cli db:migrate:undo:all",
+    "seed:admin": "npx sequelize db:seed --seed admin.seed.js",
+    "undo:admin": "npx sequelize db:seed:undo --seed admin.seed.js",
+    "stop:docker": "docker-compose down",
+    "start:docker": "docker-compose up -d",
+    "clean": "rm -rf build && mkdir build",
+    "build:source": "babel ./src -d ./build/src",
+    "build:server": "babel ./server.js -d ./build",
+    "build": "yarn clean && yarn build:source && yarn build:server",
+    "prod": "yarn build && node ./build/server.js",
+    "start": "nodemon --exec ./node_modules/.bin/babel-node ./server.js",
+    "dev": "yarn start:docker && sleep 1 && yarn start"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "connect-redis": "^7.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "helmet": "^7.0.0",
+    "ioredis": "^5.3.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.6.1",
+    "sequelize": "^6.33.0",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.15",
+    "@babel/core": "^7.22.20",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/register": "^7.22.15",
+    "nodemon": "^3.0.1",
+    "sequelize-cli": "^6.6.1"
+  }
+}
