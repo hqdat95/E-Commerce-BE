@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import { async } from '../middlewares';
-import { homeCtrl } from '../controllers/home.controller';
+import { async, verifyAT } from '../middlewares';
+import * as homeCtrl from '../controllers/home.controller';
 
 const router = Router();
 
-router.get('/', async(homeCtrl));
+router.get('/', verifyAT, async(homeCtrl.home));
 
 export default router;
