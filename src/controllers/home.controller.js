@@ -1,3 +1,3 @@
-export const homeCtrl = async (req, res) => {
+export const home = async (req, res) => {
   res.ok('Welcome to website');
 };
