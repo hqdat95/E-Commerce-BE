@@ -5,3 +5,5 @@ export { default as session } from './session.middleware';
 export { default as response } from './response.middleware';
 export { default as errorHandler } from './error.middleware';
 export { default as validate } from './validate.middleware';
+export { default as verifyAT } from './access.middleware';
+export { default as verifyRT } from './refresh.middleware';
