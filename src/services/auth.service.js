@@ -2,12 +2,12 @@ import db from '../models';
 import bcrypt from 'bcryptjs';
 import redis from '../redis/connect.redis';
 import config from '../configs/auth.config';
+import * as googleSvc from './google.service';
 import { Token as constant } from '../constants';
-import { infoGoogleOAuth } from './google.service';
 import { generateTokens, signToken } from '../utils/token.util';
 import { Unauthorized, BadRequest } from '../core/error.response';
 
-export const registerSvc = async ({ username, email, password }) => {
+export const register = async ({ username, email, password }) => {
   const isExist = await db.User.count({ where: { email }, paranoid: false });
 
   if (isExist > 0) throw new Unauthorized('User already exists');
@@ -19,7 +19,7 @@ export const registerSvc = async ({ username, email, password }) => {
   return { user, accessToken, refreshToken };
 };
 
-export const localLoginSvc = async (email, password) => {
+export const localLogin = async (email, password) => {
   const user = await db.User.findOne({ where: { email } });
 
   if (!user) throw new BadRequest('Invalid Credentials');
@@ -33,10 +33,10 @@ export const localLoginSvc = async (email, password) => {
   return { user, accessToken, refreshToken };
 };
 
-export const googleLoginSvc = async (code) => {
+export const googleLogin = async (code) => {
   const authorizationCode = decodeURIComponent(code);
 
-  const userInfo = await infoGoogleOAuth(authorizationCode);
+  const userInfo = await googleSvc.infoGoogleOAuth(authorizationCode);
 
   let user = await db.User.findOne({ where: { email: userInfo.email } });
 
@@ -53,7 +53,7 @@ export const googleLoginSvc = async (code) => {
   return { user, accessToken, refreshToken };
 };
 
-export const refreshTokenSvc = async (user) => {
+export const refreshToken = async (user) => {
   await redis.del(`${constant.ACCESS_TOKEN}:${user.id}`);
 
   const accessToken = await signToken(
@@ -66,7 +66,7 @@ export const refreshTokenSvc = async (user) => {
   return { accessToken };
 };
 
-export const logoutSvc = async (user) => {
+export const logout = async (user) => {
   await Promise.all([
     redis.del(`${constant.ACCESS_TOKEN}:${user.id}`),
     redis.del(`${constant.REFRESH_TOKEN}:${user.id}`),
