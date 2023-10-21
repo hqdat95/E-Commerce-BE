@@ -1,6 +1,12 @@
 import { GrantType } from '../constants';
 import { getAuthUrl } from '../services/google.service';
-import { registerSvc, localLoginSvc, googleLoginSvc, refreshTokenSvc } from '../services/auth.service';
+import {
+  registerSvc,
+  localLoginSvc,
+  googleLoginSvc,
+  refreshTokenSvc,
+  logoutSvc,
+} from '../services/auth.service';
 
 export const registerCtrl = async (req, res) => {
   const { username, email, password } = req.body;
@@ -38,4 +44,10 @@ export const refreshTokenCtrl = async (req, res) => {
   const result = await refreshTokenSvc(req.user);
 
   res.created(result);
+};
+
+export const logoutCtrl = async (req, res) => {
+  const result = await logoutSvc(req.user);
+
+  res.ok(result);
 };
