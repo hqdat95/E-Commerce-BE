@@ -4,6 +4,7 @@ import redis from '../redis/connect.redis';
 import config from '../configs/auth.config';
 import * as googleSvc from './google.service';
 import { Token as constant } from '../constants';
+import handleGoogleLogin from '../utils/google.util';
 import { generateTokens, signToken } from '../utils/token.util';
 import { Unauthorized, BadRequest } from '../core/error.response';
 
@@ -23,6 +24,10 @@ export const localLogin = async (email, password) => {
   const user = await db.User.findOne({ where: { email } });
 
   if (!user) throw new BadRequest('Invalid Credentials');
+
+  if (user.isGoogleLogin && !user.password) {
+    return await handleGoogleLogin(user);
+  }
 
   const isPwdMatch = await bcrypt.compareSync(password, user.password);
 
