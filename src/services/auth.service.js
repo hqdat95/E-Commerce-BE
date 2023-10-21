@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import db from '../models';
 import { infoGoogleOAuth } from './google.service';
+import { generateTokens } from '../utils/token.util';
 import { Unauthorized, BadRequest } from '../core/error.response';
 
 export const registerSvc = async ({ username, email, password }) => {
@@ -10,7 +11,9 @@ export const registerSvc = async ({ username, email, password }) => {
 
   const user = await db.User.create({ username, email, password });
 
-  return { user };
+  const { accessToken, refreshToken } = await generateTokens(user);
+
+  return { user, accessToken, refreshToken };
 };
 
 export const localLoginSvc = async (email, password) => {
@@ -22,7 +25,9 @@ export const localLoginSvc = async (email, password) => {
 
   if (!isPwdMatch) throw new BadRequest('Invalid Credentials');
 
-  return { user };
+  const { accessToken, refreshToken } = await generateTokens(user);
+
+  return { user, accessToken, refreshToken };
 };
 
 export const googleLoginSvc = async (code) => {
@@ -40,5 +45,7 @@ export const googleLoginSvc = async (code) => {
     });
   }
 
-  return { user };
+  const { accessToken, refreshToken } = await generateTokens(user);
+
+  return { user, accessToken, refreshToken };
 };
