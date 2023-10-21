@@ -6,4 +6,6 @@ export default {
 
   ACCESS_TOKEN_EXPIRES_IN: process.env.ACCESS_TOKEN_EXPIRES_IN,
   REFRESH_TOKEN_EXPIRES_IN: process.env.REFRESH_TOKEN_EXPIRES_IN,
+
+  OTP_EXPIRES_IN: process.env.OTP_EXPIRES_IN,
 };
