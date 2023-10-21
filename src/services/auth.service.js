@@ -65,3 +65,12 @@ export const refreshTokenSvc = async (user) => {
 
   return { accessToken };
 };
+
+export const logoutSvc = async (user) => {
+  await Promise.all([
+    redis.del(`${constant.ACCESS_TOKEN}:${user.id}`),
+    redis.del(`${constant.REFRESH_TOKEN}:${user.id}`),
+  ]);
+
+  return { message: 'Logged out successfully', user };
+};
