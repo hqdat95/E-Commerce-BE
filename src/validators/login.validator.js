@@ -11,5 +11,10 @@ export default {
 
   [GrantType.GOOGLE_LOGIN]: Joi.object({
     grantType: Joi.string().valid(GrantType.GOOGLE_LOGIN),
+    code: Joi.string().required().messages({
+      'string.base': 'Code must be a string.',
+      'string.empty': 'Code must not be empty.',
+      'any.required': 'Code is required.',
+    }),
   }),
 };
