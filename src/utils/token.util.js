@@ -21,3 +21,12 @@ export const generateTokens = async (user) => {
 
   return { accessToken, refreshToken };
 };
+
+export const signAT = async (user) => {
+  return await signToken(
+    user,
+    config.ACCESS_TOKEN_SECRET,
+    config.ACCESS_TOKEN_EXPIRES_IN,
+    constant.ACCESS_TOKEN,
+  );
+};
