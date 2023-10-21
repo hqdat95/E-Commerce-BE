@@ -8,3 +8,4 @@ export { default as validate } from './validate.middleware';
 export { default as verifyAT } from './access.middleware';
 export { default as verifyRT } from './refresh.middleware';
 export { default as verifyOTP } from './otp.middleware';
+export { default as checkLogin } from './login.middleware';
