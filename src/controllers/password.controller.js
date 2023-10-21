@@ -7,3 +7,11 @@ export const forgot = async (req, res) => {
 
   res.ok(result);
 };
+
+export const update = async (req, res) => {
+  const { newPassword } = req.body;
+
+  const result = await passwordSvc.update(req.user, newPassword);
+
+  res.ok(result);
+};
