@@ -1,9 +1,10 @@
 import db from '../models';
 import bcrypt from 'bcryptjs';
 import redis from '../redis/connect.redis';
+import config from '../configs/auth.config';
 import { Token as constant } from '../constants';
 import { infoGoogleOAuth } from './google.service';
-import { generateTokens, signAT } from '../utils/token.util';
+import { generateTokens, signToken } from '../utils/token.util';
 import { Unauthorized, BadRequest } from '../core/error.response';
 
 export const registerSvc = async ({ username, email, password }) => {
@@ -55,7 +56,12 @@ export const googleLoginSvc = async (code) => {
 export const refreshTokenSvc = async (user) => {
   await redis.del(`${constant.ACCESS_TOKEN}:${user.id}`);
 
-  const accessToken = await signAT(user);
+  const accessToken = await signToken(
+    user,
+    config.ACCESS_TOKEN_SECRET,
+    config.ACCESS_TOKEN_EXPIRES_IN,
+    constant.ACCESS_TOKEN,
+  );
 
   return { accessToken };
 };
