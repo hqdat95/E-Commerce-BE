@@ -19,4 +19,11 @@ export default {
       newPassword: userSchema().password,
     };
   },
+
+  change: () => {
+    return {
+      oldPassword: userSchema().password,
+      newPassword: userSchema().password,
+    };
+  },
 };

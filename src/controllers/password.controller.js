@@ -15,3 +15,11 @@ export const update = async (req, res) => {
 
   res.ok(result);
 };
+
+export const change = async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+
+  const result = await passwordSvc.change(req.user, oldPassword, newPassword);
+
+  res.ok(result);
+};
