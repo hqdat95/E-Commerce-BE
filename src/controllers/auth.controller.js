@@ -1,5 +1,6 @@
 import { GrantType } from '../constants';
-import { registerSvc, localLoginSvc } from '../services/auth.service';
+import { getAuthUrl } from '../services/google.service';
+import { registerSvc, localLoginSvc, googleLoginSvc } from '../services/auth.service';
 
 export const registerCtrl = async (req, res) => {
   const { username, email, password } = req.body;
@@ -10,7 +11,7 @@ export const registerCtrl = async (req, res) => {
 };
 
 export const loginCtrl = async (req, res) => {
-  const { grantType, email, password } = req.body;
+  const { grantType, email, password, code } = req.body;
 
   let result;
 
@@ -21,8 +22,14 @@ export const loginCtrl = async (req, res) => {
       return res.ok(result);
 
     case GrantType.GOOGLE_LOGIN:
-      result = await googleLoginSvc();
+      result = await googleLoginSvc(code);
 
       return res.ok(result);
   }
+};
+
+export const googleLoginURL = async (req, res) => {
+  const result = getAuthUrl();
+
+  res.ok(result);
 };
