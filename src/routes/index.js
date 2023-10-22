@@ -7,6 +7,7 @@ import usersRoutes from './users.routes';
 import categoriesRoutes from './categories.routes';
 import productsRoutes from './products.routes';
 import infosRoutes from './infos.routes';
+import imagesRoutes from './images.routes';
 
 const router = Router();
 
@@ -17,5 +18,6 @@ router.use('/users', usersRoutes);
 router.use('/categories', categoriesRoutes);
 router.use('/products', productsRoutes);
 router.use('/infos', infosRoutes);
+router.use('/images', imagesRoutes);
 
 export default router;
