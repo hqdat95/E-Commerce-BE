@@ -9,3 +9,4 @@ export { default as verifyAT } from './access.middleware';
 export { default as verifyRT } from './refresh.middleware';
 export { default as verifyOTP } from './otp.middleware';
 export { default as checkLogin } from './login.middleware';
+export { default as upload } from './upload.middleware';
