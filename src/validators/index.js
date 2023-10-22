@@ -4,3 +4,4 @@ export { default as password } from './password.validator';
 export { default as category } from './category.validator';
 export { default as product } from './product.validator';
 export { default as info } from './info.validator';
+export { default as cart } from './cart.validator';
