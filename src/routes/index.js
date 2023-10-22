@@ -8,6 +8,7 @@ import categoriesRoutes from './categories.routes';
 import productsRoutes from './products.routes';
 import infosRoutes from './infos.routes';
 import imagesRoutes from './images.routes';
+import cartRoutes from './cart.routes';
 
 const router = Router();
 
@@ -19,5 +20,6 @@ router.use('/categories', categoriesRoutes);
 router.use('/products', productsRoutes);
 router.use('/infos', infosRoutes);
 router.use('/images', imagesRoutes);
+router.use('/cart', cartRoutes);
 
 export default router;
