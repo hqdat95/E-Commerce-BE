@@ -1,3 +1,5 @@
+import createError from 'http-errors';
+
 export default (req, res, next) => {
-  res.render('404.ejs');
+  next(createError(404));
 };

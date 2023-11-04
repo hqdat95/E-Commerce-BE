@@ -6,7 +6,8 @@ import express from 'express';
 import compression from 'compression';
 
 import db from './models';
-import routes from './routes';
+import apiRoutes from './routes/api';
+import homeRoutes from './routes/home';
 import viewEngine from './configs/view.config';
 import { morgan, session, response, notFound, errorHandler } from './middlewares';
 
@@ -25,7 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session);
 app.use(response);
 
-app.use('/v1/api', routes);
+app.use('/', homeRoutes);
+app.use('/v1/api', apiRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

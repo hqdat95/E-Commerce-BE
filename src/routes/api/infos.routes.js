@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-import { info } from '../validators';
-import { async, verifyAT, validate, checkLogin } from '../middlewares';
-import * as infoCtrl from '../controllers/infos.controller';
+import { info } from '../../validators';
+import { async, verifyAT, validate, checkLogin } from '../../middlewares';
+import * as infoCtrl from '../../controllers/infos.controller';
 
 const router = Router();
 

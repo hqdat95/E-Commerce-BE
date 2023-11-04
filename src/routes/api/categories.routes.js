@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-import { category } from '../validators';
-import { async, validate } from '../middlewares';
-import * as categoryCtrl from '../controllers/categories.controller';
+import { category } from '../../validators';
+import { async, validate } from '../../middlewares';
+import * as categoryCtrl from '../../controllers/categories.controller';
 
 const router = Router();
 

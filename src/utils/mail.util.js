@@ -37,7 +37,7 @@ export const updatePassword = async (user) => {
 
   const subject = 'E-Commerce Website: Update Password';
   const routePath = `password/update/${user.id}`;
-  const templatePath = '../views/password.ejs';
+  const templatePath = '../views/password.hbs';
   const replacements = { OTP: otp };
 
   return sendEmail(user.email, subject, routePath, templatePath, replacements);

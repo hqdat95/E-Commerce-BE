@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import logger from '../helpers/winston.helper';
 
 export const development = {
   username: process.env.DB_USERNAME,
@@ -8,7 +7,7 @@ export const development = {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   dialect: 'mysql',
-  logging: (msg) => logger.debug(msg),
+  logging: false,
 };
 
 export const test = {

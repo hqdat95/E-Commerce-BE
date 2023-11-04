@@ -12,7 +12,7 @@ const redis = new Redis({
 });
 
 redis.on('ready', () => {
-  logger.info('Server is connection to Redis');
+  logger.info('Connection to Redis');
 });
 
 redis.on('error', (err) => {

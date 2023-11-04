@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { async, upload } from '../middlewares';
-import * as imagesCtrl from '../controllers/images.controller';
+import { async, upload } from '../../middlewares';
+import * as imagesCtrl from '../../controllers/images.controller';
 
 const router = Router();
 

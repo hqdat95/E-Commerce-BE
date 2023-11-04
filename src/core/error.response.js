@@ -43,12 +43,3 @@ export class UnprocessableEntity extends Error {
     super(message, status);
   }
 }
-
-export const mapResponse = {
-  [Status.BAD_REQUEST]: Reason.BAD_REQUEST,
-  [Status.UNAUTHORIZED]: Reason.UNAUTHORIZED,
-  [Status.FORBIDDEN]: Reason.FORBIDDEN,
-  [Status.NOT_FOUND]: Reason.NOT_FOUND,
-  [Status.CONFLICT]: Reason.CONFLICT,
-  [Status.UNPROCESSABLE_ENTITY]: Reason.UNPROCESSABLE_ENTITY,
-};

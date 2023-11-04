@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-import { password } from '../validators';
-import { async, validate, verifyOTP, verifyAT } from '../middlewares';
-import * as passwordCtrl from '../controllers/password.controller';
+import { password } from '../../validators';
+import { async, validate, verifyOTP, verifyAT } from '../../middlewares';
+import * as passwordCtrl from '../../controllers/password.controller';
 
 const router = Router();
 

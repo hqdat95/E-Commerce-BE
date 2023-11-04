@@ -32,9 +32,9 @@ db.Sequelize = Sequelize;
 db.connectDB = async () => {
   try {
     await sequelize.authenticate();
-    logger.info('Server is connection to MySQL Database');
+    logger.info('Connection to MySQL');
   } catch (error) {
-    logger.error('Error connecting to Database:', error);
+    logger.error('Error connecting to MySQL:', error);
   }
 };
 

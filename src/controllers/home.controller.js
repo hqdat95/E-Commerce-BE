@@ -1,3 +1,3 @@
 export const home = async (req, res) => {
-  res.ok('Welcome to website');
+  res.render('index', { title: 'E-commerce' });
 };

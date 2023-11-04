@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-import { cart } from '../validators';
-import { async, verifyAT, validate, checkLogin } from '../middlewares';
-import * as cartItemCtrl from '../controllers/cart.controller';
+import { cart } from '../../validators';
+import { async, verifyAT, validate, checkLogin } from '../../middlewares';
+import * as cartItemCtrl from '../../controllers/cart.controller';
 
 const router = Router();
 
